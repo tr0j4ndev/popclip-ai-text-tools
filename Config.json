@@ -1,14 +1,23 @@
 {
   "identifier": "com.aiko.ai-text-tools",
-  "name": "AI Text Tools",
+  "name": {
+    "en": "AI Text Tools",
+    "zh-hans": "AI 文本工具"
+  },
   "icon": "expand.svg",
   "popclipVersion": 3785,
-  "description": "AI-powered text tools: expand, shorten, polish, translate, and custom prompt.",
+  "description": {
+    "en": "AI-powered text tools: expand, shorten, polish, translate, and custom prompt.",
+    "zh-hans": "AI 文本工具：扩写、缩写、润色、翻译和自定义提示词。"
+  },
   "entitlements": ["network"],
   "actions": [
     {
       "identifier": "expand",
-      "title": "扩写",
+      "title": {
+        "en": "Expand",
+        "zh-hans": "扩写"
+      },
       "icon": "expand.svg",
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
@@ -17,7 +26,10 @@
     },
     {
       "identifier": "shorten",
-      "title": "缩写",
+      "title": {
+        "en": "Shorten",
+        "zh-hans": "缩写"
+      },
       "icon": "shorten.svg",
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
@@ -26,7 +38,10 @@
     },
     {
       "identifier": "polish",
-      "title": "润色",
+      "title": {
+        "en": "Polish",
+        "zh-hans": "润色"
+      },
       "icon": "polish.svg",
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
@@ -35,7 +50,10 @@
     },
     {
       "identifier": "translate",
-      "title": "翻译",
+      "title": {
+        "en": "Translate",
+        "zh-hans": "翻译"
+      },
       "icon": "translate.svg",
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
@@ -44,7 +62,10 @@
     },
     {
       "identifier": "custom",
-      "title": "自定义",
+      "title": {
+        "en": "Custom",
+        "zh-hans": "自定义"
+      },
       "icon": "custom.svg",
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
@@ -55,69 +76,131 @@
   "options": [
     {
       "identifier": "provider",
-      "label": "AI Provider",
+      "label": {
+        "en": "AI Provider",
+        "zh-hans": "AI 提供商"
+      },
       "type": "multiple",
-      "values": ["openai", "claude"]
+      "values": ["openai", "claude"],
+      "valueLabels": {
+        "en": ["OpenAI Compatible", "Claude (Anthropic)"],
+        "zh-hans": ["OpenAI 兼容", "Claude (Anthropic)"]
+      }
     },
     {
       "identifier": "apiBaseUrl",
-      "label": "API Base URL",
+      "label": {
+        "en": "API Base URL",
+        "zh-hans": "API 地址"
+      },
       "type": "string",
-      "defaultValue": "https://api.openai.com/v1"
+      "defaultValue": "https://api.openai.com/v1",
+      "description": {
+        "en": "Base URL for the API endpoint",
+        "zh-hans": "API 接口的基础地址"
+      }
     },
     {
       "identifier": "apiKey",
-      "label": "API Key",
-      "type": "string"
+      "label": {
+        "en": "API Key",
+        "zh-hans": "API 密钥"
+      },
+      "type": "secret",
+      "description": {
+        "en": "Your API key for authentication",
+        "zh-hans": "用于身份验证的 API 密钥"
+      }
     },
     {
       "identifier": "model",
-      "label": "Model",
+      "label": {
+        "en": "Model",
+        "zh-hans": "模型"
+      },
       "type": "string",
-      "defaultValue": "gpt-4o-mini"
+      "defaultValue": "gpt-4o-mini",
+      "description": {
+        "en": "Model name, e.g. gpt-4o-mini, claude-sonnet-4-20250514",
+        "zh-hans": "模型名称，如 gpt-4o-mini、claude-sonnet-4-20250514"
+      }
     },
     {
       "identifier": "outputMode",
-      "label": "Output Mode",
+      "label": {
+        "en": "Output Mode",
+        "zh-hans": "输出方式"
+      },
       "type": "multiple",
       "values": ["replace", "copy"],
+      "valueLabels": {
+        "en": ["Replace selected text", "Copy to clipboard"],
+        "zh-hans": ["替换选中文字", "复制到剪贴板"]
+      },
       "defaultValue": "replace"
     },
     {
       "identifier": "customPrompt",
-      "label": "Custom Prompt",
+      "label": {
+        "en": "Custom Prompt",
+        "zh-hans": "自定义提示词"
+      },
       "type": "string",
-      "defaultValue": "请帮我处理以下文本"
+      "defaultValue": "请帮我处理以下文本",
+      "description": {
+        "en": "Prompt for the Custom action. Selected text will be appended.",
+        "zh-hans": "自定义操作的提示词，选中文本会附在后面。"
+      }
     },
     {
       "identifier": "enableExpand",
-      "label": "启用 扩写",
+      "label": {
+        "en": "Enable Expand",
+        "zh-hans": "启用 扩写"
+      },
       "type": "boolean",
-      "defaultValue": true
+      "defaultValue": true,
+      "icon": "expand.svg"
     },
     {
       "identifier": "enableShorten",
-      "label": "启用 缩写",
+      "label": {
+        "en": "Enable Shorten",
+        "zh-hans": "启用 缩写"
+      },
       "type": "boolean",
-      "defaultValue": true
+      "defaultValue": true,
+      "icon": "shorten.svg"
     },
     {
       "identifier": "enablePolish",
-      "label": "启用 润色",
+      "label": {
+        "en": "Enable Polish",
+        "zh-hans": "启用 润色"
+      },
       "type": "boolean",
-      "defaultValue": true
+      "defaultValue": true,
+      "icon": "polish.svg"
     },
     {
       "identifier": "enableTranslate",
-      "label": "启用 翻译",
+      "label": {
+        "en": "Enable Translate",
+        "zh-hans": "启用 翻译"
+      },
       "type": "boolean",
-      "defaultValue": true
+      "defaultValue": true,
+      "icon": "translate.svg"
     },
     {
       "identifier": "enableCustom",
-      "label": "启用 自定义",
+      "label": {
+        "en": "Enable Custom",
+        "zh-hans": "启用 自定义"
+      },
       "type": "boolean",
-      "defaultValue": true
+      "defaultValue": true,
+      "icon": "custom.svg"
     }
   ]
 }
