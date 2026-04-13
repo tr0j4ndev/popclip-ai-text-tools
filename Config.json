@@ -103,7 +103,7 @@
         "claude"
       ],
       "valueLabels": [
-        "OpenAI 兼容",
+        "OpenAI Compatible",
         "Claude (Anthropic)"
       ]
     },
@@ -139,10 +139,10 @@
         "zh-hans": "模型"
       },
       "type": "string",
-      "defaultValue": "gpt-4o-mini",
+      "defaultValue": "gpt-5-nano",
       "description": {
-        "en": "Model name, e.g. gpt-4o-mini, claude-sonnet-4-20250514",
-        "zh-hans": "模型名称，如 gpt-4o-mini、claude-sonnet-4-20250514"
+        "en": "Model name, e.g. gpt-5-nano, claude-haiku-4-6-20250612",
+        "zh-hans": "模型名称，如 gpt-5-nano、claude-haiku-4-6-20250612"
       }
     },
     {
@@ -157,8 +157,8 @@
         "copy"
       ],
       "valueLabels": [
-        "替换选中文字",
-        "复制到剪贴板"
+        "Replace selected text",
+        "Copy to clipboard"
       ],
       "defaultValue": "replace"
     },

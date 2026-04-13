@@ -31,7 +31,7 @@ A PopClip extension that integrates AI capabilities, providing text expand, shor
 | AI Provider | API provider | `openai` |
 | API Base URL | API endpoint URL | `https://api.openai.com/v1` |
 | API Key | Your API key | *(required)* |
-| Model | Model name | `gpt-4o-mini` |
+| Model | Model name | `gpt-5-nano` |
 | Output Mode | Output behavior | `replace` (replace selected text) |
 | Custom Prompt | Custom action prompt | `请帮我处理以下文本` |
 | Enable Expand | Show/hide Expand button | ✅ |
@@ -46,13 +46,13 @@ Works with OpenAI, DeepSeek, Qwen, Groq, and any OpenAI-compatible service:
 
 - Provider: `OpenAI Compatible`
 - API Base URL: `https://api.openai.com/v1`
-- Model: `gpt-4o-mini`
+- Model: `gpt-5-nano`
 
 #### Claude API
 
 - Provider: `Claude (Anthropic)`
 - API Base URL: `https://api.anthropic.com/v1`
-- Model: `claude-sonnet-4-20250514`
+- Model: `claude-haiku-4-6-20250612`
 
 #### Third-party Proxies
 
@@ -107,7 +107,7 @@ Supports any OpenAI-compatible proxy — just change the API Base URL and API Ke
 | AI 提供商 | API 提供商 | `openai` |
 | API 地址 | API 接口地址 | `https://api.openai.com/v1` |
 | API 密钥 | 你的 API Key | （必填） |
-| 模型 | 模型名称 | `gpt-4o-mini` |
+| 模型 | 模型名称 | `gpt-5-nano` |
 | 输出方式 | 结果输出行为 | `replace`（替换选中文字） |
 | 自定义提示词 | 自定义操作的提示词 | `请帮我处理以下文本` |
 | 启用 扩写 | 显示/隐藏扩写按钮 | ✅ |
@@ -122,13 +122,13 @@ Supports any OpenAI-compatible proxy — just change the API Base URL and API Ke
 
 - 提供商：`OpenAI 兼容`
 - API 地址：`https://api.openai.com/v1`
-- 模型：`gpt-4o-mini`
+- 模型：`gpt-5-nano`
 
 #### Claude API
 
 - 提供商：`Claude (Anthropic)`
 - API 地址：`https://api.anthropic.com/v1`
-- 模型：`claude-sonnet-4-20250514`
+- 模型：`claude-haiku-4-6-20250612`
 
 #### 第三方代理/中转
 
