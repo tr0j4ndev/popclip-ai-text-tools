@@ -10,7 +10,9 @@
     "en": "AI-powered text tools: expand, shorten, polish, translate, and custom prompt.",
     "zh-hans": "AI 文本工具：扩写、缩写、润色、翻译和自定义提示词。"
   },
-  "entitlements": ["network"],
+  "entitlements": [
+    "network"
+  ],
   "actions": [
     {
       "identifier": "expand",
@@ -22,7 +24,10 @@
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
       "stoppable": true,
-      "requirements": ["text", "option-enableExpand=1"]
+      "requirements": [
+        "text",
+        "option-enableExpand=1"
+      ]
     },
     {
       "identifier": "shorten",
@@ -34,7 +39,10 @@
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
       "stoppable": true,
-      "requirements": ["text", "option-enableShorten=1"]
+      "requirements": [
+        "text",
+        "option-enableShorten=1"
+      ]
     },
     {
       "identifier": "polish",
@@ -46,7 +54,10 @@
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
       "stoppable": true,
-      "requirements": ["text", "option-enablePolish=1"]
+      "requirements": [
+        "text",
+        "option-enablePolish=1"
+      ]
     },
     {
       "identifier": "translate",
@@ -58,7 +69,10 @@
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
       "stoppable": true,
-      "requirements": ["text", "option-enableTranslate=1"]
+      "requirements": [
+        "text",
+        "option-enableTranslate=1"
+      ]
     },
     {
       "identifier": "custom",
@@ -70,7 +84,10 @@
       "shellScriptFile": "ai-request.sh",
       "after": "paste-result",
       "stoppable": true,
-      "requirements": ["text", "option-enableCustom=1"]
+      "requirements": [
+        "text",
+        "option-enableCustom=1"
+      ]
     }
   ],
   "options": [
@@ -81,11 +98,14 @@
         "zh-hans": "AI 提供商"
       },
       "type": "multiple",
-      "values": ["openai", "claude"],
-      "valueLabels": {
-        "en": ["OpenAI Compatible", "Claude (Anthropic)"],
-        "zh-hans": ["OpenAI 兼容", "Claude (Anthropic)"]
-      }
+      "values": [
+        "openai",
+        "claude"
+      ],
+      "valueLabels": [
+        "OpenAI 兼容",
+        "Claude (Anthropic)"
+      ]
     },
     {
       "identifier": "apiBaseUrl",
@@ -132,11 +152,14 @@
         "zh-hans": "输出方式"
       },
       "type": "multiple",
-      "values": ["replace", "copy"],
-      "valueLabels": {
-        "en": ["Replace selected text", "Copy to clipboard"],
-        "zh-hans": ["替换选中文字", "复制到剪贴板"]
-      },
+      "values": [
+        "replace",
+        "copy"
+      ],
+      "valueLabels": [
+        "替换选中文字",
+        "复制到剪贴板"
+      ],
       "defaultValue": "replace"
     },
     {
