@@ -1,0 +1,8 @@
+# Debug script
+ai-request-debug.sh
+
+# macOS
+.DS_Store
+
+# PopClip sync artifacts
+*.popclipextz

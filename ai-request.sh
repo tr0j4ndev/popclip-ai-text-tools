@@ -1,0 +1,212 @@
+#!/bin/zsh
+# AI Text Tools - PopClip Extension
+# Unified request script for all AI actions
+
+set -uo pipefail
+
+# --- Read PopClip environment ---
+ACTION="${POPCLIP_ACTION_IDENTIFIER:-}"
+TEXT="${POPCLIP_TEXT:-}"
+PROVIDER="${POPCLIP_OPTION_PROVIDER:-openai}"
+API_BASE_URL="${POPCLIP_OPTION_APIBASEURL:-https://api.openai.com/v1}"
+API_KEY="${POPCLIP_OPTION_APIKEY:-}"
+MODEL="${POPCLIP_OPTION_MODEL:-gpt-4o-mini}"
+OUTPUT_MODE="${POPCLIP_OPTION_OUTPUTMODE:-replace}"
+CUSTOM_PROMPT="${POPCLIP_OPTION_CUSTOMPROMPT:-请帮我处理以下文本}"
+
+# --- Validate inputs ---
+if [[ -z "$API_KEY" ]]; then
+  echo "❌ 请先在扩展设置中填写 API Key"
+  exit 1
+fi
+
+if [[ -z "$TEXT" ]]; then
+  echo "❌ 没有选中文字"
+  exit 1
+fi
+
+# --- Select prompt based on action identifier ---
+case "$ACTION" in
+  expand)
+    SYSTEM_PROMPT="你是一个文本扩写助手。将用户提供的文本扩写，保持原意不变，丰富细节和表达。只输出扩写结果，不要添加任何前缀、解释或说明。"
+    USER_PROMPT="${TEXT}"
+    ;;
+  shorten)
+    SYSTEM_PROMPT="你是一个文本缩写助手。将用户提供的文本缩写，保留核心信息，去除冗余。只输出缩写结果，不要添加任何前缀、解释或说明。"
+    USER_PROMPT="${TEXT}"
+    ;;
+  polish)
+    SYSTEM_PROMPT="你是一个文本润色助手。润色用户提供的文本，使其更流畅自然，修正语法和用词问题。只输出润色结果，不要添加任何前缀、解释或说明。"
+    USER_PROMPT="${TEXT}"
+    ;;
+  translate)
+    SYSTEM_PROMPT="你是一个翻译助手。翻译用户提供的文本：如为中文则译为英文，如为英文则译为中文，其他语言译为中文。只输出翻译结果，不要添加任何前缀、解释或说明。"
+    USER_PROMPT="${TEXT}"
+    ;;
+  custom)
+    SYSTEM_PROMPT=""
+    USER_PROMPT="${CUSTOM_PROMPT}
+
+${TEXT}"
+    ;;
+  *)
+    echo "❌ 未知操作: ${ACTION}"
+    exit 1
+    ;;
+esac
+
+# --- Build JSON payload using Python (safe escaping) ---
+build_payload_openai() {
+  python3 -c '
+import sys, json
+system_prompt = sys.argv[1]
+user_prompt = sys.argv[2]
+messages = []
+if system_prompt:
+    messages.append({"role": "system", "content": system_prompt})
+messages.append({"role": "user", "content": user_prompt})
+payload = {
+    "model": sys.argv[3],
+    "messages": messages,
+    "temperature": 0.7,
+    "stream": False
+}
+print(json.dumps(payload, ensure_ascii=False))
+' "$SYSTEM_PROMPT" "$USER_PROMPT" "$MODEL"
+}
+
+build_payload_claude() {
+  python3 -c '
+import sys, json
+system_prompt = sys.argv[1]
+user_prompt = sys.argv[2]
+payload = {
+    "model": sys.argv[3],
+    "max_tokens": 4096,
+    "stream": False,
+    "messages": [{"role": "user", "content": user_prompt}]
+}
+if system_prompt:
+    payload["system"] = system_prompt
+print(json.dumps(payload, ensure_ascii=False))
+' "$SYSTEM_PROMPT" "$USER_PROMPT" "$MODEL"
+}
+
+# --- Prepare curl write-out format ---
+CURL_FORMAT=$(python3 -c "print('%' + '{' + 'http_code' + '}')")
+
+# --- SSE parser (for APIs that ignore stream:false) ---
+parse_sse_openai() {
+  python3 -c '
+import sys, json
+result = []
+for line in open(sys.argv[1]):
+    line = line.strip()
+    if line.startswith("data:") and line != "data: [DONE]":
+        try:
+            obj = json.loads(line[5:].strip())
+            choices = obj.get("choices", [])
+            if choices:
+                delta = choices[0].get("delta", {})
+                text = delta.get("content", "")
+                if text:
+                    result.append(text)
+        except: pass
+print("".join(result))
+' "$1"
+}
+
+parse_sse_claude() {
+  python3 -c '
+import sys, json
+result = []
+for line in open(sys.argv[1]):
+    line = line.strip()
+    if line.startswith("data:") and line != "data: [DONE]":
+        try:
+            obj = json.loads(line[5:].strip())
+            delta = obj.get("delta", {})
+            text = delta.get("text", "")
+            if text:
+                result.append(text)
+        except: pass
+print("".join(result))
+' "$1"
+}
+
+# --- Build and send API request ---
+TMPFILE=$(mktemp)
+HTTP_CODE=""
+RESULT=""
+
+if [[ "$PROVIDER" == "claude" ]]; then
+  # Claude/Anthropic API
+  CLAUDE_URL="${API_BASE_URL%/}/messages"
+  PAYLOAD=$(build_payload_claude)
+
+  HTTP_CODE=$(curl -s -o "$TMPFILE" -w "$CURL_FORMAT" \
+    --max-time 60 \
+    -X POST "$CLAUDE_URL" \
+    -H "Content-Type: application/json" \
+    -H "x-api-key: ${API_KEY}" \
+    -H "anthropic-version: 2023-06-01" \
+    -d "$PAYLOAD" 2>&1) || true
+
+  if [[ "$HTTP_CODE" != "200" ]]; then
+    ERROR_MSG=$(jq -r '.error.message // "未知错误"' "$TMPFILE" 2>/dev/null || echo "请求失败")
+    rm -f "$TMPFILE"
+    echo "❌ 请求失败 (HTTP ${HTTP_CODE}): ${ERROR_MSG}"
+    exit 1
+  fi
+
+  # Try non-streaming parse first
+  RESULT=$(jq -r '.content[0].text // empty' "$TMPFILE" 2>/dev/null) || true
+  if [[ -z "$RESULT" ]]; then
+    # Fall back to SSE parsing
+    RESULT=$(parse_sse_claude "$TMPFILE") || true
+  fi
+  rm -f "$TMPFILE"
+
+else
+  # OpenAI-compatible API
+  OPENAI_URL="${API_BASE_URL%/}/chat/completions"
+  PAYLOAD=$(build_payload_openai)
+
+  HTTP_CODE=$(curl -s -o "$TMPFILE" -w "$CURL_FORMAT" \
+    --max-time 60 \
+    -X POST "$OPENAI_URL" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer ${API_KEY}" \
+    -d "$PAYLOAD" 2>&1) || true
+
+  if [[ "$HTTP_CODE" != "200" ]]; then
+    ERROR_MSG=$(jq -r '.error.message // "未知错误"' "$TMPFILE" 2>/dev/null || echo "请求失败")
+    rm -f "$TMPFILE"
+    echo "❌ 请求失败 (HTTP ${HTTP_CODE}): ${ERROR_MSG}"
+    exit 1
+  fi
+
+  # Try non-streaming parse first
+  RESULT=$(jq -r '.choices[0].message.content // empty' "$TMPFILE" 2>/dev/null) || true
+  if [[ -z "$RESULT" ]]; then
+    # Fall back to SSE parsing
+    RESULT=$(parse_sse_openai "$TMPFILE") || true
+  fi
+  rm -f "$TMPFILE"
+fi
+
+# --- Handle result ---
+if [[ -z "$RESULT" ]]; then
+  echo "❌ AI 未返回有效内容"
+  exit 1
+fi
+
+# Trim whitespace
+RESULT=$(echo "$RESULT" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+if [[ "$OUTPUT_MODE" == "copy" ]]; then
+  echo -n "$RESULT" | pbcopy
+  echo "✓ 已复制到剪贴板"
+else
+  echo -n "$RESULT"
+fi

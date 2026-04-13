@@ -1,0 +1,123 @@
+{
+  "identifier": "com.aiko.ai-text-tools",
+  "name": "AI Text Tools",
+  "icon": "expand.svg",
+  "popclipVersion": 3785,
+  "description": "AI-powered text tools: expand, shorten, polish, translate, and custom prompt.",
+  "entitlements": ["network"],
+  "actions": [
+    {
+      "identifier": "expand",
+      "title": "扩写",
+      "icon": "expand.svg",
+      "shellScriptFile": "ai-request.sh",
+      "after": "paste-result",
+      "stoppable": true,
+      "requirements": ["text", "option-enableExpand=1"]
+    },
+    {
+      "identifier": "shorten",
+      "title": "缩写",
+      "icon": "shorten.svg",
+      "shellScriptFile": "ai-request.sh",
+      "after": "paste-result",
+      "stoppable": true,
+      "requirements": ["text", "option-enableShorten=1"]
+    },
+    {
+      "identifier": "polish",
+      "title": "润色",
+      "icon": "polish.svg",
+      "shellScriptFile": "ai-request.sh",
+      "after": "paste-result",
+      "stoppable": true,
+      "requirements": ["text", "option-enablePolish=1"]
+    },
+    {
+      "identifier": "translate",
+      "title": "翻译",
+      "icon": "translate.svg",
+      "shellScriptFile": "ai-request.sh",
+      "after": "paste-result",
+      "stoppable": true,
+      "requirements": ["text", "option-enableTranslate=1"]
+    },
+    {
+      "identifier": "custom",
+      "title": "自定义",
+      "icon": "custom.svg",
+      "shellScriptFile": "ai-request.sh",
+      "after": "paste-result",
+      "stoppable": true,
+      "requirements": ["text", "option-enableCustom=1"]
+    }
+  ],
+  "options": [
+    {
+      "identifier": "provider",
+      "label": "AI Provider",
+      "type": "multiple",
+      "values": ["openai", "claude"]
+    },
+    {
+      "identifier": "apiBaseUrl",
+      "label": "API Base URL",
+      "type": "string",
+      "defaultValue": "https://api.openai.com/v1"
+    },
+    {
+      "identifier": "apiKey",
+      "label": "API Key",
+      "type": "string"
+    },
+    {
+      "identifier": "model",
+      "label": "Model",
+      "type": "string",
+      "defaultValue": "gpt-4o-mini"
+    },
+    {
+      "identifier": "outputMode",
+      "label": "Output Mode",
+      "type": "multiple",
+      "values": ["replace", "copy"],
+      "defaultValue": "replace"
+    },
+    {
+      "identifier": "customPrompt",
+      "label": "Custom Prompt",
+      "type": "string",
+      "defaultValue": "请帮我处理以下文本"
+    },
+    {
+      "identifier": "enableExpand",
+      "label": "启用 扩写",
+      "type": "boolean",
+      "defaultValue": true
+    },
+    {
+      "identifier": "enableShorten",
+      "label": "启用 缩写",
+      "type": "boolean",
+      "defaultValue": true
+    },
+    {
+      "identifier": "enablePolish",
+      "label": "启用 润色",
+      "type": "boolean",
+      "defaultValue": true
+    },
+    {
+      "identifier": "enableTranslate",
+      "label": "启用 翻译",
+      "type": "boolean",
+      "defaultValue": true
+    },
+    {
+      "identifier": "enableCustom",
+      "label": "启用 自定义",
+      "type": "boolean",
+      "defaultValue": true
+    }
+  ]
+}
