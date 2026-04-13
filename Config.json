@@ -126,7 +126,7 @@
         "en": "API Key",
         "zh-hans": "API 密钥"
       },
-      "type": "secret",
+      "type": "string",
       "description": {
         "en": "Your API key for authentication",
         "zh-hans": "用于身份验证的 API 密钥"
