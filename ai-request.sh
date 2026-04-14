@@ -54,27 +54,27 @@ fi
 case "$ACTION" in
   expand)
     if [[ "$LANG" == "zh" ]]; then
-      SYSTEM_PROMPT="你是一个文本扩写引擎。将用户提供的文本扩写，保持原意不变，丰富细节和表达。只输出扩写后的文本本身，不要输出任何前缀、标题、解释或说明。"
+      SYSTEM_PROMPT="你是一个文本扩写引擎。只输出扩写后的文本本身，不要输出任何前缀、标题、解释或说明。"
     else
-      SYSTEM_PROMPT="You are a text expansion engine. Expand the text while preserving the original meaning, enriching details and expression. Output ONLY the expanded text itself, with no prefix, title, explanation, or commentary."
+      SYSTEM_PROMPT="You are a text expansion engine. Output ONLY the expanded text itself, with no prefix, title, explanation, or commentary."
     fi
-    USER_PROMPT="${TEXT}"
+    USER_PROMPT="请扩写以下文本，保持原意不变，丰富细节和表达，只输出扩写结果：$(printf '\n\n')${TEXT}"
     ;;
   shorten)
     if [[ "$LANG" == "zh" ]]; then
-      SYSTEM_PROMPT="你是一个文本缩写引擎。将用户提供的文本缩写，保留核心信息，去除冗余。只输出缩写后的文本本身，不要输出任何前缀、标题、解释或说明。"
+      SYSTEM_PROMPT="你是一个文本缩写引擎。只输出缩写后的文本本身，不要输出任何前缀、标题、解释或说明。"
     else
-      SYSTEM_PROMPT="You are a text shortening engine. Shorten the text, keeping core information and removing redundancy. Output ONLY the shortened text itself, with no prefix, title, explanation, or commentary."
+      SYSTEM_PROMPT="You are a text shortening engine. Output ONLY the shortened text itself, with no prefix, title, explanation, or commentary."
     fi
-    USER_PROMPT="${TEXT}"
+    USER_PROMPT="请缩写以下文本，保留核心信息，去除冗余，只输出缩写结果：$(printf '\n\n')${TEXT}"
     ;;
   polish)
     if [[ "$LANG" == "zh" ]]; then
-      SYSTEM_PROMPT="你是一个文本润色引擎。润色用户提供的文本，使其更流畅自然，修正语法和用词问题。只输出润色后的文本本身，不要输出任何前缀、标题、解释或说明。"
+      SYSTEM_PROMPT="你是一个文本润色引擎。只输出润色后的文本本身，不要输出任何前缀、标题、解释或说明。"
     else
-      SYSTEM_PROMPT="You are a text polishing engine. Polish the text to make it more fluent and natural, fixing grammar and wording issues. Output ONLY the polished text itself, with no prefix, title, explanation, or commentary."
+      SYSTEM_PROMPT="You are a text polishing engine. Output ONLY the polished text itself, with no prefix, title, explanation, or commentary."
     fi
-    USER_PROMPT="${TEXT}"
+    USER_PROMPT="请润色以下文本，使其更流畅自然，修正语法和用词问题，只输出润色结果：$(printf '\n\n')${TEXT}"
     ;;
   translate)
     if [[ "$LANG" == "zh" ]]; then
