@@ -157,12 +157,21 @@
         "copy",
         "copy-replace"
       ],
+      "defaultValue": "replace",
       "valueLabels": [
-        "Replace / 替换",
-        "Copy / 复制",
-        "Copy & Replace / 复制并替换"
-      ],
-      "defaultValue": "replace"
+        {
+          "en": "Replace",
+          "zh-hans": "替换"
+        },
+        {
+          "en": "Copy",
+          "zh-hans": "复制"
+        },
+        {
+          "en": "Copy & Replace",
+          "zh-hans": "复制并替换"
+        }
+      ]
     },
     {
       "identifier": "customPrompt",
