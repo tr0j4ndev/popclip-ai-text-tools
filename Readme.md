@@ -4,108 +4,6 @@
 
 ---
 
-## English
-
-A PopClip extension that integrates AI capabilities, providing text expand, shorten, polish, translate, and custom prompt actions. Supports both OpenAI-compatible and Claude APIs.
-
-
-### Features
-
-| Button | Action | Description |
-|--------|--------|-------------|
-| Expand | Text expansion | Enrich details while preserving the original meaning |
-| Shorten | Text shortening | Keep core information, remove redundancy |
-| Polish | Text polishing | Improve fluency, fix grammar and wording |
-| Translate | Translation | Auto-detect: CN→EN, EN→CN, others→CN |
-| Custom | Custom prompt | Process text with your own prompt |
-
-### Installation
-
-1. Download `ai-text-tools.popclipextz` from the latest [Release](../../releases)
-2. Double-click the `.popclipextz` file — PopClip will install it automatically
-3. Configure your API settings in PopClip's extension preferences
-
-### Configuration
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| AI Provider | API provider | `OpenAI Compatible` |
-| API Base URL | API endpoint URL | `https://api.openai.com/v1` |
-| API Key | Your API key | *(required)* |
-| Model | Model name | `gpt-5-nano` |
-| Output Mode | Output behavior | `Replace` |
-| Custom Prompt | Custom action prompt | `请帮我处理以下文本` |
-| Enable Expand | Show/hide Expand button | ✅ |
-| Enable Shorten | Show/hide Shorten button | ✅ |
-| Enable Polish | Show/hide Polish button | ✅ |
-| Enable Translate | Show/hide Translate button | ✅ |
-| Enable Custom | Show/hide Custom button | ✅ |
-
-#### OpenAI-compatible API
-
-Works with OpenAI, DeepSeek, Qwen, Groq, and any OpenAI-compatible service:
-
-- Provider: `OpenAI Compatible`
-- API Base URL: `https://api.openai.com/v1`
-- Model: `gpt-5-nano`
-
-#### Claude API
-
-- Provider: `Claude (Anthropic)`
-- API Base URL: `https://api.anthropic.com/v1`
-- Model: `claude-haiku-4-6-20250612`
-
-#### Third-party Proxies
-
-Supports any OpenAI-compatible proxy — just change the API Base URL and API Key.
-
-### Output Modes
-
-| Mode | Description |
-|------|-------------|
-| **Replace** / 替换 | AI result replaces the selected text directly / AI 处理结果直接替换选中的文字 |
-| **Copy** / 复制 | Result is copied to clipboard with a confirmation message / 结果复制到剪贴板，显示确认提示 |
-| **Copy & Replace** / 复制并替换 | Result is copied to clipboard AND replaces the selected text / 结果复制到剪贴板，同时替换选中文字 |
-
-### Custom Prompt Examples
-
-The Custom action appends your selected text after the prompt. Set your personality, then let it rip.
-
-| Personality | Prompt |
-|-------------|--------|
-| **Proofreader** — Zero tolerance for typos, grammar sins, and awkward phrasing | `Fix all typos, grammar mistakes, and awkward phrasing. Output only the corrected text:` |
-| **CEO** — Corporate polish. Every word earns its place | `Rewrite in a professional, executive tone. Concise and authoritative. Output only the result:` |
-| **Bestie** — Warm, casual, like texting your closest friend | `Rewrite in a casual, warm, friendly tone. Like texting a close friend. Output only the result:` |
-| **Telescope** — Find the signal, discard the noise | `Summarize in one clear sentence. No fluff. Output only the summary:` |
-| **Professor** — Patient explainer, crystal clear | `Explain in simple terms anyone can understand. Use analogies if helpful. Output only the explanation:` |
-| **Muse** — Pick up the pen and keep going | `Continue writing from where this text ends. Match the style and tone exactly. Output only the continuation:` |
-| **Staccato** — Bullets only. No prose. | `Convert into concise bullet points. No intro, no outro. Output only the bullets:` |
-| **Pitch** — Make them say yes | `Rewrite to be more persuasive and compelling. Every sentence should drive action. Output only the result:` |
-| **Forensics** — Pull out the facts, nothing but the facts | `Extract all key facts, data points, and claims. Output only the extracted content:` |
-| **Hemingway** — Cut the fat. Keep the muscle | `Rewrite using short, direct sentences. Remove adverbs and filler words. Output only the result:` |
-| **Diplomat** — Say the hard thing softly | `Rewrite to be tactful and diplomatic. Convey the same message without friction. Output only the result:` |
-| **Mic Drop** — One line. Maximum impact | `Condense into a single powerful, memorable line. Output only that line:` |
-| **Emoji** — Words are fine, vibes are better | `Rewrite using emoji where they add expression and tone. Output only the result:` |
-| **Noir** — Hard-boiled narration, shadows and all | `Rewrite in the style of a noir detective narrating. Moody, cynical, atmospheric. Output only the result:` |
-| **Pirate** — Avast! Every sentence needs more seas | `Rewrite like a salty pirate captain. Full of nautical terms and swagger. Output only the result:` |
-
-### Technical Details
-
-- Shell Script + curl for API calls — no additional dependencies needed
-- Auto-handles SSE streaming responses (fallback parser for non-compliant APIs)
-- Python3 for safe JSON escaping to handle special characters
-- Bilingual UI (English / Simplified Chinese) — follows your system language
-- Language-aware translation direction (auto-detects CN/EN and translates accordingly)
-
-### Requirements
-
-- macOS 12+
-- PopClip 2024.5+
-- Python 3 (system built-in)
-- jq (optional, for JSON parsing)
-
----
-
 ## 中文
 
 一个 PopClip 扩展，集成 AI 能力，提供文本扩写、缩写、润色、翻译和自定义提示词操作。支持 OpenAI 兼容 API 和 Claude API。
@@ -167,9 +65,9 @@ The Custom action appends your selected text after the prompt. Set your personal
 
 | 模式 | 说明 |
 |------|------|
-| **Replace** / 替换 | Replace selected text with AI result / AI 处理结果直接替换选中的文字 |
-| **Copy** / 复制 | Copy to clipboard with confirmation / 结果复制到剪贴板，显示确认提示 |
-| **Copy & Replace** / 复制并替换 | Copy to clipboard AND replace selected text / 结果复制到剪贴板，同时替换选中文字 |
+| **替换** | AI 处理结果直接替换选中的文字 |
+| **复制** | 结果复制到剪贴板，显示确认提示 |
+| **复制并替换** | 结果复制到剪贴板，同时替换选中文字 |
 
 ### 自定义提示词示例
 
@@ -207,6 +105,113 @@ The Custom action appends your selected text after the prompt. Set your personal
 - PopClip 2024.5+
 - Python 3（系统自带）
 - jq（可选，用于 JSON 解析）
+
+---
+
+## English
+
+A PopClip extension that integrates AI capabilities, providing text expand, shorten, polish, translate, and custom prompt actions. Supports both OpenAI-compatible and Claude APIs.
+
+### Features
+
+| Button | Action | Description |
+|--------|--------|-------------|
+| Expand | Text expansion | Enrich details while preserving the original meaning |
+| Shorten | Text shortening | Keep core information, remove redundancy |
+| Polish | Text polishing | Improve fluency, fix grammar and wording |
+| Translate | Translation | Auto-detect: CN→EN, EN→CN, others→CN |
+| Custom | Custom prompt | Process text with your own prompt |
+
+### Installation
+
+1. Download `ai-text-tools.popclipextz` from the latest [Release](../../releases)
+2. Double-click the `.popclipextz` file — PopClip will install it automatically
+3. Configure your API settings in PopClip's extension preferences
+
+### Configuration
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| AI Provider | API provider | `OpenAI Compatible` |
+| API Base URL | API endpoint URL | `https://api.openai.com/v1` |
+| API Key | Your API key | *(required)* |
+| Model | Model name | `gpt-5-nano` |
+| Output Mode | Output behavior | `Replace` |
+| Custom Prompt | Custom action prompt | `请帮我处理以下文本` |
+| Enable Expand | Show/hide Expand button | ✅ |
+| Enable Shorten | Show/hide Shorten button | ✅ |
+| Enable Polish | Show/hide Polish button | ✅ |
+| Enable Translate | Show/hide Translate button | ✅ |
+| Enable Custom | Show/hide Custom button | ✅ |
+
+#### OpenAI-compatible API
+
+Works with OpenAI, DeepSeek, Qwen, Groq, and any OpenAI-compatible service:
+
+- Provider: `OpenAI Compatible`
+- API Base URL: `https://api.openai.com/v1`
+- Model: `gpt-5-nano`
+
+#### Claude API
+
+- Provider: `Claude (Anthropic)`
+- API Base URL: `https://api.anthropic.com/v1`
+- Model: `claude-haiku-4-6-20250612`
+
+#### Third-party Proxies
+
+Supports any OpenAI-compatible proxy — just change the API Base URL and API Key.
+
+### Output Modes
+
+| Mode | Description |
+|------|-------------|
+| **Replace** | AI result replaces the selected text directly |
+| **Copy** | Result is copied to clipboard with a confirmation message |
+| **Copy & Replace** | Result is copied to clipboard AND replaces the selected text |
+
+### Custom Prompt Examples
+
+The Custom action appends your selected text after the prompt. Set your personality, then let it rip.
+
+| Personality | Prompt |
+|-------------|--------|
+| **Proofreader** — Zero tolerance for typos, grammar sins, and awkward phrasing | `Fix all typos, grammar mistakes, and awkward phrasing. Output only the corrected text:` |
+| **CEO** — Corporate polish. Every word earns its place | `Rewrite in a professional, executive tone. Concise and authoritative. Output only the result:` |
+| **Bestie** — Warm, casual, like texting your closest friend | `Rewrite in a casual, warm, friendly tone. Like texting a close friend. Output only the result:` |
+| **Telescope** — Find the signal, discard the noise | `Summarize in one clear sentence. No fluff. Output only the summary:` |
+| **Professor** — Patient explainer, crystal clear | `Explain in simple terms anyone can understand. Use analogies if helpful. Output only the explanation:` |
+| **Muse** — Pick up the pen and keep going | `Continue writing from where this text ends. Match the style and tone exactly. Output only the continuation:` |
+| **Staccato** — Bullets only. No prose. | `Convert into concise bullet points. No intro, no outro. Output only the bullets:` |
+| **Pitch** — Make them say yes | `Rewrite to be more persuasive and compelling. Every sentence should drive action. Output only the result:` |
+| **Forensics** — Pull out the facts, nothing but the facts | `Extract all key facts, data points, and claims. Output only the extracted content:` |
+| **Hemingway** — Cut the fat. Keep the muscle | `Rewrite using short, direct sentences. Remove adverbs and filler words. Output only the result:` |
+| **Diplomat** — Say the hard thing softly | `Rewrite to be tactful and diplomatic. Convey the same message without friction. Output only the result:` |
+| **Mic Drop** — One line. Maximum impact | `Condense into a single powerful, memorable line. Output only that line:` |
+| **Emoji** — Words are fine, vibes are better | `Rewrite using emoji where they add expression and tone. Output only the result:` |
+| **Noir** — Hard-boiled narration, shadows and all | `Rewrite in the style of a noir detective narrating. Moody, cynical, atmospheric. Output only the result:` |
+| **Pirate** — Avast! Every sentence needs more seas | `Rewrite like a salty pirate captain. Full of nautical terms and swagger. Output only the result:` |
+
+### Technical Details
+
+- Shell Script + curl for API calls — no additional dependencies needed
+- Auto-handles SSE streaming responses (fallback parser for non-compliant APIs)
+- Python3 for safe JSON escaping to handle special characters
+- Bilingual UI (English / Simplified Chinese) — follows your system language
+- Language-aware translation direction (auto-detects CN/EN and translates accordingly)
+
+### Requirements
+
+- macOS 12+
+- PopClip 2024.5+
+- Python 3 (system built-in)
+- jq (optional, for JSON parsing)
+
+---
+
+## Community
+
+- [LINUX DO](https://linux.do/) — Where we first shared this project
 
 ## Credits
 
