@@ -13,11 +13,11 @@ A PopClip extension that integrates AI capabilities, providing text expand, shor
 
 | Button | Action | Description |
 |--------|--------|-------------|
-| ↔ Expand | Text expansion | Enrich details while preserving the original meaning |
-| ↔ Shorten | Text shortening | Keep core information, remove redundancy |
-| ✎ Polish | Text polishing | Improve fluency, fix grammar and wording |
-| 文A Translate | Translation | Auto-detect: CN→EN, EN→CN, others→CN |
-| ⚙ Custom | Custom prompt | Process text with your own prompt |
+| Expand | Text expansion | Enrich details while preserving the original meaning |
+| Shorten | Text shortening | Keep core information, remove redundancy |
+| Polish | Text polishing | Improve fluency, fix grammar and wording |
+| Translate | Translation | Auto-detect: CN→EN, EN→CN, others→CN |
+| Custom | Custom prompt | Process text with your own prompt |
 
 ### Installation
 
@@ -117,11 +117,11 @@ The Custom action appends your selected text after the prompt. Set your personal
 
 | 按钮 | 功能 | 说明 |
 |------|------|------|
-| ↔ 扩写 | 文本扩写 | 保持原意，丰富细节和表达 |
-| ↔ 缩写 | 文本缩写 | 保留核心信息，去除冗余 |
-| ✎ 润色 | 文本润色 | 更流畅自然，修正语法和用词 |
-| 文A 翻译 | 中英互译 | 自动检测：中→英，英→中，其他→中 |
-| ⚙ 自定义 | 自定义提示词 | 使用自定义 prompt 处理文本 |
+| 扩写 | 文本扩写 | 保持原意，丰富细节和表达 |
+| 缩写 | 文本缩写 | 保留核心信息，去除冗余 |
+| 润色 | 文本润色 | 更流畅自然，修正语法和用词 |
+| 翻译 | 中英互译 | 自动检测：中→英，英→中，其他→中 |
+| 自定义 | 自定义提示词 | 使用自定义 prompt 处理文本 |
 
 ### 安装
 
