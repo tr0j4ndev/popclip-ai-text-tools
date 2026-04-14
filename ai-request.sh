@@ -54,35 +54,49 @@ fi
 case "$ACTION" in
   expand)
     if [[ "$LANG" == "zh" ]]; then
-      SYSTEM_PROMPT="你是一个文本扩写助手。将用户提供的文本扩写，保持原意不变，丰富细节和表达。只输出扩写结果，不要添加任何前缀、解释或说明。"
+      SYSTEM_PROMPT="你是一个文本扩写引擎。将用户提供的文本扩写，保持原意不变，丰富细节和表达。只输出扩写后的文本本身，不要输出任何前缀、标题、解释或说明。"
     else
-      SYSTEM_PROMPT="You are a text expansion assistant. Expand the text while preserving the original meaning, enriching details and expression. Output only the expanded result with no prefix, explanation, or commentary."
+      SYSTEM_PROMPT="You are a text expansion engine. Expand the text while preserving the original meaning, enriching details and expression. Output ONLY the expanded text itself, with no prefix, title, explanation, or commentary."
     fi
     USER_PROMPT="${TEXT}"
     ;;
   shorten)
     if [[ "$LANG" == "zh" ]]; then
-      SYSTEM_PROMPT="你是一个文本缩写助手。将用户提供的文本缩写，保留核心信息，去除冗余。只输出缩写结果，不要添加任何前缀、解释或说明。"
+      SYSTEM_PROMPT="你是一个文本缩写引擎。将用户提供的文本缩写，保留核心信息，去除冗余。只输出缩写后的文本本身，不要输出任何前缀、标题、解释或说明。"
     else
-      SYSTEM_PROMPT="You are a text shortening assistant. Shorten the text, keeping core information and removing redundancy. Output only the shortened result with no prefix, explanation, or commentary."
+      SYSTEM_PROMPT="You are a text shortening engine. Shorten the text, keeping core information and removing redundancy. Output ONLY the shortened text itself, with no prefix, title, explanation, or commentary."
     fi
     USER_PROMPT="${TEXT}"
     ;;
   polish)
     if [[ "$LANG" == "zh" ]]; then
-      SYSTEM_PROMPT="你是一个文本润色助手。润色用户提供的文本，使其更流畅自然，修正语法和用词问题。只输出润色结果，不要添加任何前缀、解释或说明。"
+      SYSTEM_PROMPT="你是一个文本润色引擎。润色用户提供的文本，使其更流畅自然，修正语法和用词问题。只输出润色后的文本本身，不要输出任何前缀、标题、解释或说明。"
     else
-      SYSTEM_PROMPT="You are a text polishing assistant. Polish the text to make it more fluent and natural, fixing grammar and wording issues. Output only the polished result with no prefix, explanation, or commentary."
+      SYSTEM_PROMPT="You are a text polishing engine. Polish the text to make it more fluent and natural, fixing grammar and wording issues. Output ONLY the polished text itself, with no prefix, title, explanation, or commentary."
     fi
     USER_PROMPT="${TEXT}"
     ;;
   translate)
     if [[ "$LANG" == "zh" ]]; then
-      SYSTEM_PROMPT="你是一个翻译助手。翻译用户提供的文本：如为中文则译为英文，如为英文则译为中文，其他语言译为中文。只输出翻译结果，不要添加任何前缀、解释或说明。"
+      SYSTEM_PROMPT="你是一个专业翻译引擎。你的唯一任务是翻译文本，绝不改写、扩写、润色或解释原文。只输出翻译结果，不要输出任何标签、前缀或注释。"
     else
-      SYSTEM_PROMPT="You are a translation assistant. Translate the text: if Chinese, translate to English; if English, translate to Chinese; other languages translate to English. Output only the translation with no prefix, explanation, or commentary."
+      SYSTEM_PROMPT="You are a professional translation engine. Your sole task is to translate text, never rewrite, expand, polish or explain. Output ONLY the translation. Do NOT output any labels, prefixes, or annotations."
     fi
-    USER_PROMPT="${TEXT}"
+    DIRECTION=$(python3 -c "
+import sys
+text = sys.argv[1]
+zh = sum(1 for c in text if '\u4e00' <= c <= '\u9fff')
+en = sum(1 for c in text if c.isascii() and c.isalpha())
+if zh > en:
+    print('to-en')
+else:
+    print('to-zh')
+" "$TEXT" 2>/dev/null || echo "to-zh")
+    if [[ "$DIRECTION" == "to-en" ]]; then
+      USER_PROMPT="将以下中文翻译为英文，只输出英文翻译结果：$(printf '\n\n')${TEXT}"
+    else
+      USER_PROMPT="Translate the following text to Chinese, output ONLY the Chinese translation:$(printf '\n\n')${TEXT}"
+    fi
     ;;
   custom)
     SYSTEM_PROMPT=""
@@ -239,11 +253,11 @@ fi
 RESULT=$(echo "$RESULT" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
 if [[ "$OUTPUT_MODE" == "copy" ]]; then
-  echo -n "$RESULT" | pbcopy
+  printf "%s" "$RESULT" | pbcopy
   echo "$t_copied"
 elif [[ "$OUTPUT_MODE" == "copy-replace" ]]; then
-  echo -n "$RESULT" | pbcopy
-  echo -n "$RESULT"
+  printf "%s" "$RESULT" | pbcopy
+  printf "%s" "$RESULT"
 else
-  echo -n "$RESULT"
+  printf "%s" "$RESULT"
 fi
