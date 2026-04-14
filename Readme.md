@@ -8,7 +8,6 @@
 
 A PopClip extension that integrates AI capabilities, providing text expand, shorten, polish, translate, and custom prompt actions. Supports both OpenAI-compatible and Claude APIs.
 
-<p align="center"><img src="demo@2x.png" width="170" alt="AI Text Tools Demo"></p>
 
 ### Features
 
@@ -110,6 +109,8 @@ The Custom action appends your selected text after the prompt. Set your personal
 ## 中文
 
 一个 PopClip 扩展，集成 AI 能力，提供文本扩写、缩写、润色、翻译和自定义提示词操作。支持 OpenAI 兼容 API 和 Claude API。
+
+<p align="center"><img src="demo@2x.png" width="170" alt="AI Text Tools Demo"></p>
 
 ### 功能
 
