@@ -62,9 +62,9 @@ Supports any OpenAI-compatible proxy — just change the API Base URL and API Ke
 
 | Mode | Description |
 |------|-------------|
-| **Replace** | AI result replaces the selected text directly |
-| **Copy** | Result is copied to clipboard with a confirmation message |
-| **Copy & Replace** | Result is copied to clipboard AND replaces the selected text |
+| **Replace** / 替换 | AI result replaces the selected text directly / AI 处理结果直接替换选中的文字 |
+| **Copy** / 复制 | Result is copied to clipboard with a confirmation message / 结果复制到剪贴板，显示确认提示 |
+| **Copy & Replace** / 复制并替换 | Result is copied to clipboard AND replaces the selected text / 结果复制到剪贴板，同时替换选中文字 |
 
 ### Custom Prompt Examples
 
@@ -163,9 +163,9 @@ The Custom action appends your selected text after the prompt. Set your personal
 
 | 模式 | 说明 |
 |------|------|
-| **Replace** / 替换 | AI 处理结果直接替换选中的文字 |
-| **Copy** / 复制 | 结果复制到剪贴板，显示确认提示 |
-| **Copy & Replace** / 复制并替换 | 结果复制到剪贴板，同时替换选中文字 |
+| **Replace** / 替换 | Replace selected text with AI result / AI 处理结果直接替换选中的文字 |
+| **Copy** / 复制 | Copy to clipboard with confirmation / 结果复制到剪贴板，显示确认提示 |
+| **Copy & Replace** / 复制并替换 | Copy to clipboard AND replace selected text / 结果复制到剪贴板，同时替换选中文字 |
 
 ### 自定义提示词示例
 
@@ -203,6 +203,11 @@ The Custom action appends your selected text after the prompt. Set your personal
 - PopClip 2024.5+
 - Python 3（系统自带）
 - jq（可选，用于 JSON 解析）
+
+## Credits
+
+- **Author:** [ma200line](https://x.com/ma200line)
+- **Icons:** [Central Icons](https://centralicons.com)
 
 ## License
 
