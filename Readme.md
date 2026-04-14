@@ -8,6 +8,8 @@
 
 A PopClip extension that integrates AI capabilities, providing text expand, shorten, polish, translate, and custom prompt actions. Supports both OpenAI-compatible and Claude APIs.
 
+<p align="center"><img src="demo@2x.png" width="170" alt="AI Text Tools Demo"></p>
+
 ### Features
 
 | Button | Action | Description |
