@@ -68,29 +68,25 @@ Supports any OpenAI-compatible proxy — just change the API Base URL and API Ke
 
 ### Custom Prompt Examples
 
-The Custom action appends your selected text after the prompt. Here are some useful examples:
+The Custom action appends your selected text after the prompt. Set your personality, then let it rip.
 
-| Use Case | Custom Prompt |
-|----------|---------------|
-| Fix typos | `Fix all typos in the following text, output only the corrected text:` |
-| Make formal | `Rewrite the following text in a formal tone, output only the result:` |
-| Make casual | `Rewrite the following text in a casual, friendly tone, output only the result:` |
-| Summarize | `Summarize the following text in one sentence, output only the summary:` |
-| Explain like I'm 5 | `Explain the following text in simple terms a child could understand, output only the explanation:` |
-| Continue writing | `Continue writing from where the following text ends, maintaining the same style, output only the continuation:` |
-| Rewrite as bullet points | `Convert the following text into bullet points, output only the bullet points:` |
-| Change perspective | `Rewrite the following text from a third-person perspective, output only the result:` |
-| Make more persuasive | `Rewrite the following text to be more persuasive and compelling, output only the result:` |
-| Extract key info | `Extract the key information and facts from the following text, output only the extracted content:` |
-| 改错别字 | `修正以下文本中的所有错别字，只输出修正后的文本：` |
-| 变正式 | `将以下文本改写为正式语气，只输出改写结果：` |
-| 变口语化 | `将以下文本改写为口语化、轻松的语气，只输出改写结果：` |
-| 一句话总结 | `用一句话总结以下文本，只输出总结：` |
-| 续写 | `接着以下文本继续写，保持相同风格，只输出续写内容：` |
-| 提取要点 | `从以下文本中提取关键信息和要点，只输出提取的内容：` |
-| 改为列表 | `将以下文本转换为要点列表，只输出列表内容：` |
-| 更有说服力 | `将以下文本改写得更有说服力，只输出改写结果：` |
-| 小白解释 | `用通俗易懂的语言解释以下文本，只输出解释内容：` |
+| Personality | Prompt |
+|-------------|--------|
+| **Proofreader** — Zero tolerance for typos, grammar sins, and awkward phrasing | `Fix all typos, grammar mistakes, and awkward phrasing. Output only the corrected text:` |
+| **CEO** — Corporate polish. Every word earns its place | `Rewrite in a professional, executive tone. Concise and authoritative. Output only the result:` |
+| **Bestie** — Warm, casual, like texting your closest friend | `Rewrite in a casual, warm, friendly tone. Like texting a close friend. Output only the result:` |
+| **Telescope** — Find the signal, discard the noise | `Summarize in one clear sentence. No fluff. Output only the summary:` |
+| **Professor** — Patient explainer, crystal clear | `Explain in simple terms anyone can understand. Use analogies if helpful. Output only the explanation:` |
+| **Muse** — Pick up the pen and keep going | `Continue writing from where this text ends. Match the style and tone exactly. Output only the continuation:` |
+| **Staccato** — Bullets only. No prose. | `Convert into concise bullet points. No intro, no outro. Output only the bullets:` |
+| **Pitch** — Make them say yes | `Rewrite to be more persuasive and compelling. Every sentence should drive action. Output only the result:` |
+| **Forensics** — Pull out the facts, nothing but the facts | `Extract all key facts, data points, and claims. Output only the extracted content:` |
+| **Hemingway** — Cut the fat. Keep the muscle | `Rewrite using short, direct sentences. Remove adverbs and filler words. Output only the result:` |
+| **Diplomat** — Say the hard thing softly | `Rewrite to be tactful and diplomatic. Convey the same message without friction. Output only the result:` |
+| **Mic Drop** — One line. Maximum impact | `Condense into a single powerful, memorable line. Output only that line:` |
+| **Emoji** — Words are fine, vibes are better | `Rewrite using emoji where they add expression and tone. Output only the result:` |
+| **Noir** — Hard-boiled narration, shadows and all | `Rewrite in the style of a noir detective narrating. Moody, cynical, atmospheric. Output only the result:` |
+| **Pirate** — Avast! Every sentence needs more seas | `Rewrite like a salty pirate captain. Full of nautical terms and swagger. Output only the result:` |
 
 ### Technical Details
 
@@ -173,28 +169,25 @@ The Custom action appends your selected text after the prompt. Here are some use
 
 ### 自定义提示词示例
 
-自定义操作会将选中文本附加在提示词后面。以下是一些常用示例：
+自定义操作会将选中文本附加在提示词后面。设定你的人格，然后开干。
 
-| 用途 | 自定义提示词 |
-|------|-------------|
-| 改错别字 | `修正以下文本中的所有错别字，只输出修正后的文本：` |
-| 变正式 | `将以下文本改写为正式语气，只输出改写结果：` |
-| 变口语化 | `将以下文本改写为口语化、轻松的语气，只输出改写结果：` |
-| 一句话总结 | `用一句话总结以下文本，只输出总结：` |
-| 续写 | `接着以下文本继续写，保持相同风格，只输出续写内容：` |
-| 提取要点 | `从以下文本中提取关键信息和要点，只输出提取的内容：` |
-| 改为列表 | `将以下文本转换为要点列表，只输出列表内容：` |
-| 更有说服力 | `将以下文本改写得更有说服力，只输出改写结果：` |
-| 小白解释 | `用通俗易懂的语言解释以下文本，只输出解释内容：` |
-| Fix typos | `Fix all typos in the following text, output only the corrected text:` |
-| Make formal | `Rewrite the following text in a formal tone, output only the result:` |
-| Make casual | `Rewrite the following text in a casual, friendly tone, output only the result:` |
-| Summarize | `Summarize the following text in one sentence, output only the summary:` |
-| Explain like I'm 5 | `Explain the following text in simple terms a child could understand, output only the explanation:` |
-| Continue writing | `Continue writing from where the following text ends, maintaining the same style, output only the continuation:` |
-| Rewrite as bullet points | `Convert the following text into bullet points, output only the bullet points:` |
-| Make more persuasive | `Rewrite the following text to be more persuasive and compelling, output only the result:` |
-| Extract key info | `Extract the key information and facts from the following text, output only the extracted content:` |
+| 人格 | 提示词 |
+|------|--------|
+| **校对官** —— 对错别字和语病零容忍 | `修正所有错别字、语法错误和拗口表达，只输出修正后的文本：` |
+| **霸总** —— 每个字都要有执行力 | `用专业、权威、简洁的商务语气改写，只输出改写结果：` |
+| **好闺蜜** —— 温暖随性，像发微信 | `用轻松、亲切、口语化的语气改写，像在跟好朋友聊天，只输出改写结果：` |
+| **聚光灯** —— 剥离噪音，只留信号 | `用一句话精炼总结，不加废话，只输出总结：` |
+| **老师** —— 通俗易懂，醍醐灌顶 | `用最通俗的语言解释，必要时用比喻，只输出解释内容：` |
+| **续写者** —— 提笔续写，一气呵成 | `接着原文继续写，保持相同的风格和语气，只输出续写内容：` |
+| **罗列狂** —— 只要要点，不要废话 | `转换为简洁的要点列表，不要开头结尾，只输出列表：` |
+| **带货王** —— 每句话都让人想下单 | `改写得更有说服力和感染力，每句话都要推动行动，只输出改写结果：` |
+| **侦探** —— 只提取事实，绝不添油加醋 | `提取所有关键事实、数据点和论断，只输出提取的内容：` |
+| **海明威** —— 短句直击，删掉一切修饰 | `用简短有力的句子改写，删除副词和废话，只输出改写结果：` |
+| **外交官** —— 把难听的话说得漂亮 | `用委婉得体的方式改写，传达同样意思但避免冲突，只输出改写结果：` |
+| **金句王** —— 一句话，一击即中 | `浓缩成一句有力、令人难忘的话，只输出这句话：` |
+| **颜文字** —— 能用表情说明的绝不用字 | `在合适的地方用 emoji 替代文字来增加表现力，只输出改写结果：` |
+| **武侠** —— 飞沙走石，字字如刀 | `用武侠小说的风格改写，江湖气拉满，只输出改写结果：` |
+| **甄嬛** —— 话里有话，绵里藏针 | `用宫廷剧的语气改写，字字机锋，句句试探，只输出改写结果：` |
 
 ### 技术细节
 
