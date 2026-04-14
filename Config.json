@@ -154,11 +154,13 @@
       "type": "multiple",
       "values": [
         "replace",
-        "copy"
+        "copy",
+        "copy-replace"
       ],
       "valueLabels": [
-        "Replace selected text",
-        "Copy to clipboard"
+        "Replace / 替换",
+        "Copy / 复制",
+        "Copy & Replace / 复制并替换"
       ],
       "defaultValue": "replace"
     },

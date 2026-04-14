@@ -17,6 +17,7 @@ t_unknown="❌ 未知操作"
 t_fail="❌ 请求失败"
 t_no_result="❌ AI 未返回有效内容"
 t_copied="✓ 已复制到剪贴板"
+t_copied_replaced="✓ 已复制并替换"
 
 if [[ "$LANG" == "en" ]]; then
   t_no_key="❌ Please enter your API Key in extension settings"
@@ -25,6 +26,7 @@ if [[ "$LANG" == "en" ]]; then
   t_fail="❌ Request failed"
   t_no_result="❌ AI returned no content"
   t_copied="✓ Copied to clipboard"
+t_copied_replaced="✓ Copied & replaced"
 fi
 
 # --- Read PopClip environment ---
@@ -239,6 +241,9 @@ RESULT=$(echo "$RESULT" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 if [[ "$OUTPUT_MODE" == "copy" ]]; then
   echo -n "$RESULT" | pbcopy
   echo "$t_copied"
+elif [[ "$OUTPUT_MODE" == "copy-replace" ]]; then
+  echo -n "$RESULT" | pbcopy
+  echo -n "$RESULT"
 else
   echo -n "$RESULT"
 fi
