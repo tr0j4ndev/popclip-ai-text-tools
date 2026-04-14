@@ -215,7 +215,7 @@ The Custom action appends your selected text after the prompt. Set your personal
 
 ## Credits
 
-- **Author:** [ma200line](https://x.com/ma200line)
+- **Author:** [PipB0y](https://x.com/PipB0y_)
 - **Icons:** [Central Icons](https://centralicons.com)
 
 ## License
